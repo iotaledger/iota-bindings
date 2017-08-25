@@ -7,7 +7,7 @@ use cty::*;
 use trytes::*;
 use trytes::constants::TRITS_PER_BYTE;
 
-#[repr(u8)]
+#[repr(u32)]
 #[derive(Clone, PartialEq, Eq, Debug)]
 pub enum TritEncoding {
     BYTE = 1,
@@ -17,10 +17,10 @@ pub enum TritEncoding {
 
 #[repr(C)]
 pub struct CTrits {
-    encoding: TritEncoding,
-    length: usize,
-    data: *mut c_void,
-    byte_length: usize,
+    pub encoding: TritEncoding,
+    pub length: usize,
+    pub data: *mut c_void,
+    pub byte_length: usize,
 }
 
 pub fn ctrits_from_bytes(length: usize, bytes: Vec<u8>) -> CTrits {

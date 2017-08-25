@@ -1,0 +1,16 @@
+[package]
+name = "iota-rs-ffi"
+version = "0.1.0"
+authors = ["Andreas C. Osowski <andreas@osowski.de>"]
+license = "MIT"
+build = "build.rs"
+
+[lib]
+name = "iotarsffi"
+crate-type = ["dylib"]
+
+[build-dependencies]
+neon-build = "0.1.19"
+
+[dependencies]
+neon = "0.1.19"

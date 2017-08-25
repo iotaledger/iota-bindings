@@ -1,0 +1,13 @@
+[package]
+name = "iota-bindings-python"
+version = "0.1.0"
+authors = ["Andreas C. Osowski <andreas@osowski.de>"]
+
+[lib]
+name = "iota"
+crate-type = ["cdylib"]
+
+[dependencies.pyo3]
+version = "0.2.0"
+default-features = false
+

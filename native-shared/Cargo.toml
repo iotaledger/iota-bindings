@@ -1,0 +1,14 @@
+[package]
+name = "iota-bindings-shared"
+version = "0.1.0"
+authors = ["Andreas C. Osowski <andreas@osowski.de>"]
+
+[lib]
+name = "IOTA"
+path = "src/lib.rs"
+crate-type = ["dylib"]
+
+[dependencies]
+iota-bindings-rlib  = { path = "../rlib" }
+
+

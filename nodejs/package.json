@@ -1,0 +1,17 @@
+{
+  "name": "iota.rs.ffi",
+  "version": "0.1.0",
+  "description": "iota.rs FFI bindings",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iotaledger/iota-bindings.git"
+  },
+  "author": "Andreas C. Osowski <andreas@osowski.de>",
+  "license": "MIT",
+  "dev-dependencies": {
+    "neon-cli": "^0.1.19"
+  },
+  "scripts": {
+    "install": "neon build"
+  }
+}

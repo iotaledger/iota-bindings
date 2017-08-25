@@ -1,0 +1,19 @@
+[package]
+name = "iota-bindings-static"
+version = "0.1.0"
+authors = ["Andreas C. Osowski <andreas@osowski.de>"]
+
+[lib]
+name = "IOTA"
+path = "src/lib.rs"
+crate-type = ["staticlib"]
+
+[features]
+default = []
+custom_alloc = ["cty"]
+
+[dependencies]
+iota-bindings-rlib  = { path = "../rlib" }
+cty = { git = "https://github.com/japaric/cty.git", optional = true }
+
+

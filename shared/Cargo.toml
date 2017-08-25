@@ -1,0 +1,16 @@
+[package]
+name = "iota-bindings-shared"
+version = "0.1.0"
+authors = ["Andreas C. Osowski <andreas@osowski.de>"]
+keywords = ["no_std"]
+
+[lib]
+crate-type = ["rlib"]
+
+[dependencies]
+cty = { git = "https://github.com/japaric/cty.git" }
+iota-trytes = { git = "https://github.com/iotaledger/iota.rs.git" }
+
+
+
+

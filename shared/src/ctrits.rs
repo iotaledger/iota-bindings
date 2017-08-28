@@ -50,8 +50,13 @@ pub fn ctrits_from_trits(trits: Vec<Trit>) -> CTrits {
 }
 
 pub fn ctrits_from_trytes(mut trytes: String) -> CTrits {
-    trytes.push('\0');
-    let bytes = trytes.into_bytes();
+    trytes.shrink_to_fit();
+
+    let mut bytes = trytes.into_bytes();
+    if Some(&0) != bytes.last() {
+       bytes.push(0); 
+    }
+
     let len = bytes.len();
     let ptr = bytes.as_ptr() as *mut c_void;
     mem::forget(bytes);
@@ -260,17 +265,21 @@ pub fn ctrits_convert(ctrits: &CTrits, to: TritEncoding) -> CTrits {
         }
         TritEncoding::TRYTE => {
             let mut trytes = ctrits_to_trytes(ctrits);
-            trytes.push('\0');
-            let tbytes = trytes.into_bytes();
-            let slen = tbytes.len();
-            let sptr = tbytes.as_ptr() as *mut c_void;
-            mem::forget(tbytes);
+            trytes.shrink_to_fit();
+            let mut bytes = trytes.into_bytes();
+            if Some(&0) != bytes.last() {
+                bytes.push(0);
+            }
+
+            let slen = bytes.len();
+            let sptr = bytes.as_ptr() as *mut c_void;
+            mem::forget(bytes);
 
             CTrits {
                 encoding: TritEncoding::TRYTE,
-                length: slen,
+                length: slen- 1,
                 data: sptr,
-                byte_length: slen + 1,
+                byte_length: slen,
             }
         }
     }

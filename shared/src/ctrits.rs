@@ -66,12 +66,12 @@ pub fn ctrits_from_trytes(mut trytes: String) -> CTrits {
 
 pub fn ctrits_slice_bytes(ctrits: &CTrits) -> &[u8] {
     assert_eq!(ctrits.encoding, TritEncoding::BYTE);
-    unsafe { slice::from_raw_parts(ctrits.data as *mut u8, ctrits.byte_length) }
+    unsafe { slice::from_raw_parts(ctrits.data as *const u8, ctrits.byte_length) }
 }
 
 pub fn ctrits_slice_trits(ctrits: &CTrits) -> &[Trit] {
     assert_eq!(ctrits.encoding, TritEncoding::TRIT);
-    unsafe { slice::from_raw_parts(ctrits.data as *mut Trit, ctrits.length) }
+    unsafe { slice::from_raw_parts(ctrits.data as *const Trit, ctrits.length) }
 }
 
 pub fn ctrits_slice_str(ctrits: &CTrits) -> &str {
@@ -79,6 +79,26 @@ pub fn ctrits_slice_str(ctrits: &CTrits) -> &str {
     unsafe {
         mem::transmute(slice::from_raw_parts(
             ctrits.data as *const c_char,
+            ctrits.length,
+        ))
+    }
+}
+
+pub fn ctrits_slice_bytes_mut(ctrits: &mut CTrits) -> &mut [u8] {
+    assert_eq!(ctrits.encoding, TritEncoding::BYTE);
+    unsafe { slice::from_raw_parts_mut(ctrits.data as *mut u8, ctrits.byte_length) }
+}
+
+pub fn ctrits_slice_trits_mut(ctrits: &mut CTrits) -> &mut [Trit] {
+    assert_eq!(ctrits.encoding, TritEncoding::TRIT);
+    unsafe { slice::from_raw_parts_mut(ctrits.data as *mut Trit, ctrits.length) }
+}
+
+pub fn ctrits_slice_str_mut(ctrits: &mut CTrits) -> &mut str {
+    assert_eq!(ctrits.encoding, TritEncoding::TRYTE);
+    unsafe {
+        mem::transmute(slice::from_raw_parts_mut(
+            ctrits.data as *mut c_char,
             ctrits.length,
         ))
     }

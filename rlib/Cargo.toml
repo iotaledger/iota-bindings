@@ -12,8 +12,7 @@ doctest = true
 crate-type = ["rlib"]
 
 [dependencies]
-#iota-bindings = { git = "https://github.com/iotaledger/iota.rs.git" }
-iota-bindings = { path = "../../iota.rs/bindings" }
+iota-bindings = { git = "https://github.com/iotaledger/iota.rs.git" }
 iota-mam-bindings = { git = "https://github.com/iotaledger/MAM.git" }
 iota-bindings-shared = { path = "../shared" }
 

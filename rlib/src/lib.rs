@@ -2,6 +2,7 @@
 #![feature(alloc)]
 
 extern crate alloc;
+extern crate cty;
 
 extern crate iota_mam_bindings;
 extern crate iota_bindings;

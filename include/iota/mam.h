@@ -25,6 +25,9 @@ extern iota_mam_parse_result_t *iota_mam_parse(const iota_ctrits_t *payload,
                                                const iota_ctrits_t *side_key,
                                                const iota_ctrits_t *root);
 
+extern iota_ctrits_t *iota_mam_id(const iota_ctrits_t *key,
+                                  const iota_ctrits_t *root);
+
 #ifdef __cplusplus
 }
 #endif

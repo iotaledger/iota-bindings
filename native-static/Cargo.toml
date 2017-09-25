@@ -11,6 +11,7 @@ crate-type = ["staticlib"]
 [features]
 default = []
 custom_alloc = ["cty"]
+compiler_builtins = []
 
 [dependencies]
 iota-bindings-rlib  = { path = "../rlib" }

@@ -11,10 +11,15 @@ doc = true
 doctest = true
 crate-type = ["rlib"]
 
+[features]
+default = ["mam","iotars"]
+mam = ["iota-mam-bindings"]
+iotars = ["iota-bindings"]
+
 [dependencies]
 cty = { git = "https://github.com/japaric/cty.git" }
-iota-bindings = { git = "https://github.com/iotaledger/iota.rs.git" }
-iota-mam-bindings = { git = "https://github.com/iotaledger/MAM.git" }
+iota-bindings = { git = "https://github.com/iotaledger/iota.rs.git", optional = true }
+iota-mam-bindings = { git = "https://github.com/iotaledger/MAM.git", optional = true }
 iota-bindings-shared = { path = "../shared" }
 
 

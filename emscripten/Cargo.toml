@@ -10,6 +10,11 @@ doc = false
 doctest = false
 test = false
 
+[features]
+default = ["mam", "iotars"]
+mam = ["iota-bindings-rlib/mam"]
+iotars = ["iota-bindings-rlib/iotars"]
+
 [dependencies]
-iota-bindings-rlib  = { path = "../rlib" }
+iota-bindings-rlib  = { path = "../rlib", default-features = false }
 

@@ -1,13 +1,15 @@
 use core;
 use alloc::boxed::Box;
 use alloc::String;
+use alloc::Vec;
 
 use cty::*;
 use shared::*;
 
 #[no_mangle]
 pub fn iota_ctrits_drop(ctrits: *mut CTrits) {
-    unsafe { Box::from_raw(ctrits) };
+    let ct = unsafe { Box::from_raw(ctrits) };
+    unsafe { Vec::from_raw_parts(ct.data as *mut u8, ct.byte_length, ct.byte_length)};
 }
 
 #[no_mangle]

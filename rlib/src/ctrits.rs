@@ -42,6 +42,11 @@ pub fn iota_ctrits_ctrits_from_bytes(trit_len: usize, ptr: *const u8, len: usize
 }
 
 #[no_mangle]
+pub unsafe fn iota_ctrits_trits_to_trytes_inplace(ctrits: &mut CTrits) {
+    ctrits_trits_to_trytes_inplace(ctrits);
+}
+
+#[no_mangle]
 pub fn iota_ctrits_ctrits_encoding(ctrits: &CTrits) -> TritEncoding {
     ctrits.encoding.clone()
 }

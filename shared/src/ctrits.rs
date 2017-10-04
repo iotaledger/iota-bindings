@@ -54,7 +54,7 @@ pub fn ctrits_from_trytes(mut trytes: String) -> CTrits {
 
     let mut bytes = trytes.into_bytes();
     if Some(&0) != bytes.last() {
-       bytes.push(0); 
+        bytes.push(0);
     }
 
     let len = bytes.len();
@@ -235,6 +235,29 @@ pub fn ctrits_to_trytes(ctrits: &CTrits) -> String {
     }
 }
 
+pub unsafe fn ctrits_trits_to_trytes_inplace(ctrits: &mut CTrits) {
+    assert_eq!(ctrits.encoding, TritEncoding::TRIT);
+    assert_eq!(ctrits.length % TRITS_PER_TRYTE, 0);
+
+    let trytes: &mut [u8] = mem::transmute(slice::from_raw_parts_mut(
+        ctrits.data as *mut c_char,
+        ctrits.length,
+    ));
+
+    {
+        let trits = ctrits_slice_trits(ctrits);
+        for i in 0..(ctrits.length / TRITS_PER_TRYTE) {
+            let slice = &trits[i * TRITS_PER_TRYTE..(i + 1) * TRITS_PER_TRYTE];
+            trytes[i] = trits_to_char(slice) as u8;
+        }
+    }
+
+    ctrits.encoding = TritEncoding::TRYTE;
+    ctrits.length = ctrits.length / TRITS_PER_TRYTE;
+    ctrits.byte_length = ctrits.length / TRITS_PER_TRYTE + 1;
+    trytes[ctrits.byte_length] = '\0' as u8;
+}
+
 pub fn ctrits_convert(ctrits: &CTrits, to: TritEncoding) -> CTrits {
     match to {
         TritEncoding::BYTE => {
@@ -277,7 +300,7 @@ pub fn ctrits_convert(ctrits: &CTrits, to: TritEncoding) -> CTrits {
 
             CTrits {
                 encoding: TritEncoding::TRYTE,
-                length: slen- 1,
+                length: slen - 1,
                 data: sptr,
                 byte_length: slen,
             }
@@ -333,7 +356,7 @@ mod tests {
         0,
         0,
     ];
-    static BYTES: (usize, [u8; 6]) = (30, [55,178,248,107,12,0]);
+    static BYTES: (usize, [u8; 6]) = (30, [55, 178, 248, 107, 12, 0]);
 
     #[test]
     fn ctrits_trytes() {

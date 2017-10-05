@@ -254,8 +254,8 @@ pub unsafe fn ctrits_trits_to_trytes_inplace(ctrits: &mut CTrits) {
 
     ctrits.encoding = TritEncoding::TRYTE;
     ctrits.length = ctrits.length / TRITS_PER_TRYTE;
-    ctrits.byte_length = ctrits.length / TRITS_PER_TRYTE + 1;
-    trytes[ctrits.byte_length] = '\0' as u8;
+    trytes[ctrits.length] = '\0' as u8;
+    ctrits.byte_length = ctrits.length + 1;
 }
 
 pub fn ctrits_convert(ctrits: &CTrits, to: TritEncoding) -> CTrits {

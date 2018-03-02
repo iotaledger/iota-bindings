@@ -112,6 +112,7 @@ pub use bindings::*;
 '_iota_sign_iss_signature',\
 '_iota_sign_iss_subseed',\
 '_iota_sign_iss_subseed_to_signature',\
+'_iota_mam_id',\
 '_iota_mam_create',\
 '_iota_mam_parse'\
 ]"]

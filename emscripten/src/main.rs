@@ -114,8 +114,8 @@ pub use bindings::*;
 '_iota_sign_iss_subseed_to_signature',\
 '_iota_mam_id',\
 '_iota_mam_create',\
-'_iota_mam_parse'\
-]"]
+'_iota_mam_parse'] \
+-s EXTRA_EXPORTED_RUNTIME_METHODS=['ccall','cwrap','getValue','_free','Pointer_stringify']"]
 extern "C" {}
 
 

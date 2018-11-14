@@ -3,12 +3,9 @@ name = "iota-bindings-emscripten"
 version = "0.1.0"
 authors = ["Andreas C. Osowski <andreas@osowski.de>"]
 
-[[bin]]
-name = "IOTA"
-path = "src/main.rs"
-doc = false
-doctest = false
-test = false
+[lib]
+crate-type = ["cdylib"]
+path="src/lib.rs"
 
 [features]
 default = ["mam", "iotars"]

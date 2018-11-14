@@ -1,4 +1,6 @@
-use alloc::*;
+use alloc::slice;
+use alloc::string::String;
+use alloc::vec::Vec;
 use alloc::boxed::Box;
 use core::ops::Drop;
 use core::any::Any;
